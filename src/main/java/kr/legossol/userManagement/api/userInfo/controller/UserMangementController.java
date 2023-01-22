@@ -6,6 +6,7 @@ import kr.legossol.userManagement.api.userInfo.code.CertificateFileCode;
 import kr.legossol.userManagement.api.userInfo.code.RelateCode;
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
 import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
+import kr.legossol.userManagement.api.userInfo.entity.UserInfo;
 import kr.legossol.userManagement.api.userInfo.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,19 @@ public class UserMangementController {
     public ResponseEntity<UserInfoDto> saveParkingEmployee(@RequestBody UserInfoDto userInfoDto) {
         return new ResponseEntity<>(parkingkingFacade.saveParkingEmployee(userInfoDto),HttpStatus.CREATED);
     }
+    @Operation(summary = "(파킹클라우드)사원 정보 조회")
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<UserInfo> saveParkingEmployee(@PathVariable(value = "id")Long userId) {
+        return ResponseEntity.ok(parkingkingFacade.getUserInfoDetail(userId));
+    }
+    @Operation(summary = "(파킹클라우드)사원 정보 조회")
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<UserInfo> saveParkingEmployee(@PathVariable(value = "id")Long userId) {
+        return ResponseEntity.ok(parkingkingFacade.deleteUser(userId));
+    }
+
     @Operation(summary = "관계 코드 조회")
     @GetMapping(value = "/code/relate")
     @ResponseStatus(HttpStatus.CREATED)
@@ -53,6 +67,7 @@ public class UserMangementController {
         parkingkingFacade.saveKeycloakUser(userInfoDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 
 }

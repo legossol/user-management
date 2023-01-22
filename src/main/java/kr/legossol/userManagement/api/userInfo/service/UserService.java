@@ -15,4 +15,8 @@ public interface UserService {
     CertificateFileCode[] getCertificateCode();
 
     WorkStateCode[] getWorkStateCode();
+
+    UserInfo getUserInfo(Long userId);
+
+    void deleteUser(Long userId);
 }

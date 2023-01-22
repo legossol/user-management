@@ -3,10 +3,7 @@ package kr.legossol.userManagement.api.userInfo.entity;
 
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
 import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity(name = "user")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

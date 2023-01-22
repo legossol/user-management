@@ -39,4 +39,12 @@ public class UserFacade {
     public void saveKeycloakUser(UserInfoDto userInfoDto) {
          keycloakUserService.saveUserOnKeycloak(userInfoDto);
     }
+
+    public UserInfo getUserInfoDetail(Long userId) {
+        return parkingCloudService.getUserInfo(userId);
+    }
+
+    public void deleteUser(Long userId) {
+        parkingCloudService.deleteUser(userId);
+    }
 }
