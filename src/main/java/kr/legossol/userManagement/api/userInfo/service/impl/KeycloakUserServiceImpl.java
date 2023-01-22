@@ -1,18 +1,15 @@
 package kr.legossol.userManagement.api.userInfo.service.impl;
 
 import kr.legossol.userManagement.api.userInfo.config.KeycloakConfig;
-import kr.legossol.userManagement.api.userInfo.dto.ParkingEmployeeUserInfoDto;
+import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
 import kr.legossol.userManagement.api.userInfo.dto.keycloak.Credentials;
 import kr.legossol.userManagement.api.userInfo.service.KeycloakUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,18 +21,18 @@ import java.util.List;
 public class KeycloakUserServiceImpl implements KeycloakUserService {
 
     @Override
-    public void saveUserOnKeycloak(ParkingEmployeeUserInfoDto parkingEmployeeUserInfoDto) {
+    public void saveUserOnKeycloak(UserInfoDto userInfoDto) {
         log.info("들어왔다");
         CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
         credentialRepresentation.setTemporary(Boolean.TRUE);
-        credentialRepresentation.setId(parkingEmployeeUserInfoDto.getUserId());
-        credentialRepresentation.setValue(parkingEmployeeUserInfoDto.getPassword());
+        credentialRepresentation.setId(userInfoDto.getUserId());
+        credentialRepresentation.setValue(userInfoDto.getPassword());
         credentialRepresentation.setType(CredentialRepresentation.PASSWORD);
 
         UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setUsername(parkingEmployeeUserInfoDto.getUserId());
-        userRepresentation.setFirstName(parkingEmployeeUserInfoDto.getName());
-        userRepresentation.setEmail(parkingEmployeeUserInfoDto.getExternalEmail());
+        userRepresentation.setUsername(userInfoDto.getUserId());
+        userRepresentation.setFirstName(userInfoDto.getName());
+        userRepresentation.setEmail(userInfoDto.getExternalEmail());
         userRepresentation.setEmailVerified(Boolean.FALSE);
         userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
         userRepresentation.setEnabled(Boolean.TRUE);
@@ -51,13 +48,13 @@ public class KeycloakUserServiceImpl implements KeycloakUserService {
 
     }
 
-    public void updateUser(String userId, ParkingEmployeeUserInfoDto parkingEmployeeUserInfoDto){
+    public void updateUser(String userId, UserInfoDto userInfoDto){
         CredentialRepresentation credential = Credentials
-                .createPasswordCredentials(parkingEmployeeUserInfoDto.getPassword());
+                .createPasswordCredentials(userInfoDto.getPassword());
         UserRepresentation user = new UserRepresentation();
-        user.setUsername(parkingEmployeeUserInfoDto.getUserId());
-        user.setFirstName(parkingEmployeeUserInfoDto.getName());
-        user.setEmail(parkingEmployeeUserInfoDto.getOfficeEmail());
+        user.setUsername(userInfoDto.getUserId());
+        user.setFirstName(userInfoDto.getName());
+        user.setEmail(userInfoDto.getOfficeEmail());
         user.setCredentials(Collections.singletonList(credential));
 
         UsersResource usersResource = getInstance();

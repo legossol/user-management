@@ -32,5 +32,5 @@ public class EmergencyContact {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private EmployeeUserInfo employeeUserInfo;
+    private UserInfo userInfo;
 }

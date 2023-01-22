@@ -2,7 +2,7 @@ package kr.legossol.userManagement.api.userInfo.entity;
 
 
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
-import kr.legossol.userManagement.api.userInfo.dto.ParkingEmployeeUserInfoDto;
+import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeUserInfo {
+public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -70,8 +70,8 @@ public class EmployeeUserInfo {
     @Column(name = "grade")
     private String grade; //직급  (책임, 선임, 전임, 사원)
 
-    public static EmployeeUserInfo of(ParkingEmployeeUserInfoDto employeeUserInfoDto) {
-        return EmployeeUserInfo.builder()
+    public static UserInfo of(UserInfoDto employeeUserInfoDto) {
+        return UserInfo.builder()
                 .userId(employeeUserInfoDto.getUserId())
                 .name(employeeUserInfoDto.getName())
                 .departmentId(employeeUserInfoDto.getDepartmentId())

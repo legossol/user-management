@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeFile {
+public class UserFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class EmployeeFile {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private EmployeeUserInfo employeeUserInfo;
+    private UserInfo userInfo;
 
 
 }

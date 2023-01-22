@@ -4,24 +4,24 @@ package kr.legossol.userManagement.api.userInfo.facade;
 import kr.legossol.userManagement.api.userInfo.code.CertificateFileCode;
 import kr.legossol.userManagement.api.userInfo.code.RelateCode;
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
-import kr.legossol.userManagement.api.userInfo.dto.ParkingEmployeeUserInfoDto;
-import kr.legossol.userManagement.api.userInfo.entity.EmployeeUserInfo;
+import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
+import kr.legossol.userManagement.api.userInfo.entity.UserInfo;
 import kr.legossol.userManagement.api.userInfo.service.KeycloakUserService;
-import kr.legossol.userManagement.api.userInfo.service.ParkingCloudService;
+import kr.legossol.userManagement.api.userInfo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ParkingFacade {
+public class UserFacade {
 
-    private final ParkingCloudService parkingCloudService;
+    private final UserService parkingCloudService;
     private final KeycloakUserService keycloakUserService;
 
-    public ParkingEmployeeUserInfoDto saveParkingEmployee(ParkingEmployeeUserInfoDto parkingEmployeeUserInfoDto) {
+    public UserInfoDto saveParkingEmployee(UserInfoDto userInfoDto) {
 
 //        keycloakUserService.saveUserOnKeycloak(parkingEmployeeUserInfoDto);
-        return parkingCloudService.saveEmployee(EmployeeUserInfo.of(parkingEmployeeUserInfoDto));
+        return parkingCloudService.saveEmployee(UserInfo.of(userInfoDto));
     }
 
     public RelateCode[] getRelateCodes() {
@@ -36,7 +36,7 @@ public class ParkingFacade {
         return parkingCloudService.getCertificateCode();
     }
 
-    public void saveKeycloakUser(ParkingEmployeeUserInfoDto parkingEmployeeUserInfoDto) {
-         keycloakUserService.saveUserOnKeycloak(parkingEmployeeUserInfoDto);
+    public void saveKeycloakUser(UserInfoDto userInfoDto) {
+         keycloakUserService.saveUserOnKeycloak(userInfoDto);
     }
 }

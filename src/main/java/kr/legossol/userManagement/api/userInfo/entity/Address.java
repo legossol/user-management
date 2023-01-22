@@ -33,6 +33,6 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private EmployeeUserInfo employeeUserInfo;
+    private UserInfo userInfo;
 
 }

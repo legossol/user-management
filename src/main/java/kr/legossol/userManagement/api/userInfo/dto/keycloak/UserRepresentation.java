@@ -1,11 +1,9 @@
 package kr.legossol.userManagement.api.userInfo.dto.keycloak;
 
-import kr.legossol.userManagement.api.userInfo.dto.ParkingEmployeeUserInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.keycloak.representations.idm.CredentialRepresentation;
 
 import java.util.Map;
 

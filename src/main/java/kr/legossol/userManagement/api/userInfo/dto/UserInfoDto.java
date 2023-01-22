@@ -1,7 +1,7 @@
 package kr.legossol.userManagement.api.userInfo.dto;
 
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
-import kr.legossol.userManagement.api.userInfo.entity.EmployeeUserInfo;
+import kr.legossol.userManagement.api.userInfo.entity.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ParkingEmployeeUserInfoDto {
+public class UserInfoDto {
 
     private Long paclBusinessId;
     @NotNull
@@ -33,18 +33,18 @@ public class ParkingEmployeeUserInfoDto {
     private String position;//직책 (팀장, 팀원, 매니저)
     private String grade; //직급 (책임, 선임, 전임, 사원)
 
-    public static ParkingEmployeeUserInfoDto of(EmployeeUserInfo employeeUserInfo) {
-        return ParkingEmployeeUserInfoDto.builder()
-                .paclBusinessId(employeeUserInfo.getId())
-                .name(employeeUserInfo.getName())
-                .userId(employeeUserInfo.getUserId())
-                .workLocate(employeeUserInfo.getWorkLocate())
-                .workStatus(employeeUserInfo.getWorkStatus())
-                .groupWareId(employeeUserInfo.getGroupWareId())
-                .residentRegistrationNumber(employeeUserInfo.getGroupWareId())
-                .dateOfBirth(employeeUserInfo.getDateOfBirth())
-                .cellPhone(employeeUserInfo.getCellPhone())
-                .externalEmail(employeeUserInfo.getExternalEmail())
+    public static UserInfoDto of(UserInfo userInfo) {
+        return UserInfoDto.builder()
+                .paclBusinessId(userInfo.getId())
+                .name(userInfo.getName())
+                .userId(userInfo.getUserId())
+                .workLocate(userInfo.getWorkLocate())
+                .workStatus(userInfo.getWorkStatus())
+                .groupWareId(userInfo.getGroupWareId())
+                .residentRegistrationNumber(userInfo.getGroupWareId())
+                .dateOfBirth(userInfo.getDateOfBirth())
+                .cellPhone(userInfo.getCellPhone())
+                .externalEmail(userInfo.getExternalEmail())
                 .build();
     }
 
