@@ -1,0 +1,202 @@
+spring:
+  application:
+    name: skeleton
+  config:
+    import: properties/swagger/swagger.yml
+  mail:
+    banner-mode: console
+  devtools:
+    livereload:
+      enabled: true
+  date:
+    web:
+      pageable:
+        default-page-size: 10
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 200MB
+      max-file-size: 200MB
+  output:
+    ansi:
+      enabled: always
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      write_dates_as_timestamps: false
+  task:
+    scheduling:
+      pool:
+        size: 1
+  gson:
+    date-time-format:
+      serialize: "yyyy-MM-dd HH:mm:ss"
+      deeserialize: "yyyy-MM-dd HH:mm:ss"
+  datasource:
+    url: jdbc:mysql://localhost:3306/user?useSSL=false&autoReconnect=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 5
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      org:
+        hibernate:
+          envers:
+            audit_table_suffix: _history
+            modified_flag_suffix: _changed
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      encoding: UTF-8
+#  client:
+#    registration:
+#      keycloak:
+#        client-id: contract
+#        client-secret: VIKoihGCL47U7EFB5fNvTnJTvhDaoUIp
+#        client-name: backoffice
+keycloak:
+  realm: backoffice
+  resource: contract
+  auth-server-url: http://localhost:8080/auth
+  public-client: true
+  ssl-required: external
+  bearer-only: true
+#  auth-server-url: http://localhost:8080/realms/backoffice/protocol/openid-connect/auth
+
+#  cloud:
+#    stream:
+#      default-binder:
+#      kafka:
+#        binder:
+#          brokers:
+#            - kafka1
+#            - kafka2
+#            - kafka3
+#      bindings:
+#        employee-in-0:
+#          binder: kafka
+#          destination: dev-employee-info
+#          content-type: application/json
+#          group: dev-employee-group
+#          consumer:
+#            concurrency: 2
+#            partitioned: true
+server:
+  port: 9001
+  http2:
+    enabled: true
+  undertow:
+    buffer-size: 16000
+    direct-buffers: true
+    max-http-post-size: -1B
+    accesslog:
+      enabled: true
+      pattern: '%t %a "%r" %s (%D ms)'
+      prefix: access_log.
+      rotate: true
+      suffix: log
+  max-http-header-size: 8KB
+  servlet:
+    context-path: /management
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-response: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+hibernate:
+  dialect:
+    storage_engine: innodb
+
+feign:
+  compression:
+    request:
+      enabled: false
+    response:
+      enabled: true
+  auth:
+    basic:
+      enabled: true
+      id: mstest
+      password: mstestauth
+  client:
+    config:
+      default:
+        connectTimeout: 3000
+        readTimeout: 5000
+        loggerLevel: FULL
+  httpclient:
+    enabled: ture
+    max-connections: 200
+    max-connections-per-route: 50
+    time-to-live: 1
+    time-to-live-unit: minutes
+logging:
+  level:
+    root: info
+    kr.co.iparking.marker: debug
+    # org.hibernate.type.descriptor.sql: TRACE
+#    com.zaxxer: DEBUG
+#    org.hibernate.SQL: INFO
+#    org.hibernate.type.descriptor.sql: INFO
+#    org.apache.http.impl.conn.PoolingHttpClientConnectionManager: INFO
+#    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: INFO
+#    io.netty.handler.logging.Logging.LoggingHandler: DEBUG
+#    com.netflix: WARN
+#    org.apache.http: INFO
+
+eureka:
+  client:
+    enabled: false
+    eureka:
+      instance:
+        statusPageUrlPath: ${server.servlet.context-path}/actuator/info
+        healthCheckUrlPath: ${server.servlet.context-path}/actuator/health
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 15
+      client:
+        enabled: false
+        registry-fetch-interval-seconds: 10
+        disable-delta: true
+        serviceUrl:
+          defaultZone: http://localhost:8500/eureka/, http://localhost:8501/eureka/
+      healthcheck:
+        enabled: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+# custom cache config
+cache:
+  host: https://apis.stg.iparking.co.kr
+  enable: true
+  cache-property-map:
+    sample:
+      time-to-live:
+        unit: minutes
+        time: 10
+
+#error-report:
+#  enable: false
+#  host: https://apis.iparking.co.kr
+#  max-stack-trace: 5
+#  time-format: "yyyy-MM-dd HH:mm:ss.SSS"
+#  channel-name: i3StageException
+#  ignore-param-keys:
+#    - imageBase64
+#    - imageMultipart
