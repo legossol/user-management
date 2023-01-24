@@ -11,18 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QEmployeeFile is a Querydsl query type for EmployeeFile
+ * QUserFile is a Querydsl query type for UserFile
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QEmployeeFile extends EntityPathBase<EmployeeFile> {
+public class QUserFile extends EntityPathBase<UserFile> {
 
-    private static final long serialVersionUID = -486862165L;
+    private static final long serialVersionUID = -160228920L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QEmployeeFile employeeFile = new QEmployeeFile("employeeFile");
-
-    public final QEmployeeUserInfo employeeUserInfo;
+    public static final QUserFile userFile = new QUserFile("userFile");
 
     public final StringPath filePath = createString("filePath");
 
@@ -30,25 +28,27 @@ public class QEmployeeFile extends EntityPathBase<EmployeeFile> {
 
     public final EnumPath<kr.legossol.userManagement.api.userInfo.code.CertificateFileCode> species = createEnum("species", kr.legossol.userManagement.api.userInfo.code.CertificateFileCode.class);
 
-    public QEmployeeFile(String variable) {
-        this(EmployeeFile.class, forVariable(variable), INITS);
+    public final QUserInfo userInfo;
+
+    public QUserFile(String variable) {
+        this(UserFile.class, forVariable(variable), INITS);
     }
 
-    public QEmployeeFile(Path<? extends EmployeeFile> path) {
+    public QUserFile(Path<? extends UserFile> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QEmployeeFile(PathMetadata metadata) {
+    public QUserFile(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QEmployeeFile(PathMetadata metadata, PathInits inits) {
-        this(EmployeeFile.class, metadata, inits);
+    public QUserFile(PathMetadata metadata, PathInits inits) {
+        this(UserFile.class, metadata, inits);
     }
 
-    public QEmployeeFile(Class<? extends EmployeeFile> type, PathMetadata metadata, PathInits inits) {
+    public QUserFile(Class<? extends UserFile> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.employeeUserInfo = inits.isInitialized("employeeUserInfo") ? new QEmployeeUserInfo(forProperty("employeeUserInfo")) : null;
+        this.userInfo = inits.isInitialized("userInfo") ? new QUserInfo(forProperty("userInfo")) : null;
     }
 
 }

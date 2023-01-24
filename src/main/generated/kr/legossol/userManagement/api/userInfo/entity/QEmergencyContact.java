@@ -24,11 +24,11 @@ public class QEmergencyContact extends EntityPathBase<EmergencyContact> {
 
     public final StringPath contactNumber = createString("contactNumber");
 
-    public final QEmployeeUserInfo employeeUserInfo;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final EnumPath<kr.legossol.userManagement.api.userInfo.code.RelateCode> relation = createEnum("relation", kr.legossol.userManagement.api.userInfo.code.RelateCode.class);
+
+    public final QUserInfo userInfo;
 
     public QEmergencyContact(String variable) {
         this(EmergencyContact.class, forVariable(variable), INITS);
@@ -48,7 +48,7 @@ public class QEmergencyContact extends EntityPathBase<EmergencyContact> {
 
     public QEmergencyContact(Class<? extends EmergencyContact> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.employeeUserInfo = inits.isInitialized("employeeUserInfo") ? new QEmployeeUserInfo(forProperty("employeeUserInfo")) : null;
+        this.userInfo = inits.isInitialized("userInfo") ? new QUserInfo(forProperty("userInfo")) : null;
     }
 
 }

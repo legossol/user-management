@@ -21,7 +21,7 @@ public class UserInfosDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class defaultIndividualInfoDto{
-
+        private String name;
         private String residentRegistrationNumber;// 주민등록번호
         private String dateOfBirth;// 생년월일
         private String cellPhone;

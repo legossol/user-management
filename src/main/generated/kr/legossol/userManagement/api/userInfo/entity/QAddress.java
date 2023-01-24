@@ -24,11 +24,11 @@ public class QAddress extends EntityPathBase<Address> {
 
     public final StringPath address = createString("address");
 
-    public final QEmployeeUserInfo employeeUserInfo;
-
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath isRepresent = createBoolean("isRepresent");
+
+    public final QUserInfo userInfo;
 
     public final StringPath zipCode = createString("zipCode");
 
@@ -50,7 +50,7 @@ public class QAddress extends EntityPathBase<Address> {
 
     public QAddress(Class<? extends Address> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.employeeUserInfo = inits.isInitialized("employeeUserInfo") ? new QEmployeeUserInfo(forProperty("employeeUserInfo")) : null;
+        this.userInfo = inits.isInitialized("userInfo") ? new QUserInfo(forProperty("userInfo")) : null;
     }
 
 }

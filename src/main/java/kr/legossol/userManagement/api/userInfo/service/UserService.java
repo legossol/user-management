@@ -19,4 +19,7 @@ public interface UserService {
     UserInfo getUserInfo(Long userId);
 
     void deleteUser(Long userId);
+
+
+    UserInfo saveUser(UserInfo build);
 }

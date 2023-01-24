@@ -5,6 +5,7 @@ import kr.legossol.userManagement.api.userInfo.code.CertificateFileCode;
 import kr.legossol.userManagement.api.userInfo.code.RelateCode;
 import kr.legossol.userManagement.api.userInfo.code.WorkStateCode;
 import kr.legossol.userManagement.api.userInfo.dto.UserInfoDto;
+import kr.legossol.userManagement.api.userInfo.dto.UserInfosDto;
 import kr.legossol.userManagement.api.userInfo.entity.UserInfo;
 import kr.legossol.userManagement.api.userInfo.service.KeycloakUserService;
 import kr.legossol.userManagement.api.userInfo.service.UserService;
@@ -15,25 +16,25 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserFacade {
 
-    private final UserService parkingCloudService;
+    private final UserService userService;
     private final KeycloakUserService keycloakUserService;
 
     public UserInfoDto saveParkingEmployee(UserInfoDto userInfoDto) {
 
 //        keycloakUserService.saveUserOnKeycloak(parkingEmployeeUserInfoDto);
-        return parkingCloudService.saveEmployee(UserInfo.of(userInfoDto));
+        return userService.saveEmployee(UserInfo.of(userInfoDto));
     }
 
     public RelateCode[] getRelateCodes() {
-        return parkingCloudService.getRelateCodes();
+        return userService.getRelateCodes();
     }
 
     public WorkStateCode[] getWorkStateCode() {
-        return parkingCloudService.getWorkStateCode();
+        return userService.getWorkStateCode();
     }
 
     public CertificateFileCode[] getCertificateCode() {
-        return parkingCloudService.getCertificateCode();
+        return userService.getCertificateCode();
     }
 
     public void saveKeycloakUser(UserInfoDto userInfoDto) {
@@ -41,10 +42,22 @@ public class UserFacade {
     }
 
     public UserInfo getUserInfoDetail(Long userId) {
-        return parkingCloudService.getUserInfo(userId);
+        return userService.getUserInfo(userId);
     }
 
     public void deleteUser(Long userId) {
-        parkingCloudService.deleteUser(userId);
+        userService.deleteUser(userId);
+    }
+
+    public UserInfo saveUser(UserInfosDto userInfoDto) {
+        return userService.saveUser(UserInfo.builder().name(userInfoDto.getName()).build());
+
+    }
+
+    public UserInfo saveUserDetail(UserInfosDto.defaultIndividualInfoDto userInfoDto) {
+        return userService.saveUser(UserInfo.builder().name(userInfoDto.getName())
+                .dateOfBirth(userInfoDto.getDateOfBirth())
+                .externalEmail(userInfoDto.getExternalEmail())
+                .build());
     }
 }

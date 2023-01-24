@@ -10,20 +10,20 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QEmployeeUserInfo is a Querydsl query type for EmployeeUserInfo
+ * QUserInfo is a Querydsl query type for UserInfo
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QEmployeeUserInfo extends EntityPathBase<EmployeeUserInfo> {
+public class QUserInfo extends EntityPathBase<UserInfo> {
 
-    private static final long serialVersionUID = 279172296L;
+    private static final long serialVersionUID = -160134918L;
 
-    public static final QEmployeeUserInfo employeeUserInfo = new QEmployeeUserInfo("employeeUserInfo");
+    public static final QUserInfo userInfo = new QUserInfo("userInfo");
 
     public final StringPath cellPhone = createString("cellPhone");
 
     public final StringPath dateOfBirth = createString("dateOfBirth");
 
-    public final NumberPath<Integer> departmentId = createNumber("departmentId", Integer.class);
+    public final StringPath departmentId = createString("departmentId");
 
     public final StringPath externalEmail = createString("externalEmail");
 
@@ -45,16 +45,16 @@ public class QEmployeeUserInfo extends EntityPathBase<EmployeeUserInfo> {
 
     public final EnumPath<kr.legossol.userManagement.api.userInfo.code.WorkStateCode> workStatus = createEnum("workStatus", kr.legossol.userManagement.api.userInfo.code.WorkStateCode.class);
 
-    public QEmployeeUserInfo(String variable) {
-        super(EmployeeUserInfo.class, forVariable(variable));
+    public QUserInfo(String variable) {
+        super(UserInfo.class, forVariable(variable));
     }
 
-    public QEmployeeUserInfo(Path<? extends EmployeeUserInfo> path) {
+    public QUserInfo(Path<? extends UserInfo> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QEmployeeUserInfo(PathMetadata metadata) {
-        super(EmployeeUserInfo.class, metadata);
+    public QUserInfo(PathMetadata metadata) {
+        super(UserInfo.class, metadata);
     }
 
 }

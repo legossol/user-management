@@ -59,5 +59,10 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public UserInfo saveUser(UserInfo userInfo) {
+        return employeeBasicInfoRepository.save(userInfo);
+    }
+
 
 }
